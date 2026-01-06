@@ -85,7 +85,7 @@ async function createEmployee(page) {
 }
 
 // ==================== TEST ====================
-test('Create 5 Random Employees', async ({ page }) => {
+test('Act 2. Create 5 Random Employees', async ({ page }) => {
   test.setTimeout(120000); // allow enough time
 
   // LOGIN
