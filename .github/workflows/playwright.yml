@@ -8,6 +8,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      DISPLAY: :99
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -15,6 +17,12 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
+    - name: Install Xvfb and start virtual display
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb
+        nohup Xvfb :99 -screen 0 1280x720x24 &>/dev/null &
+        sleep 1
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
