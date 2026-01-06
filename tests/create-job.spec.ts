@@ -41,7 +41,7 @@ test('Create Job – Full Flow', async ({ page }) => {
 
 
   await page.getByRole('textbox', { name: 'mm/dd/yyyy' }).click();
-  await page.getByRole('option', { name: /January 2/i }).click();
+  await page.getByRole('option', { name: /January 30/i }).click();
 
   await page.getByRole('button', { name: 'Next' }).click();
 
