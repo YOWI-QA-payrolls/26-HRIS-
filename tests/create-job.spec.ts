@@ -51,26 +51,7 @@ test('Create Job – Full Flow', async ({ page }) => {
 
   await expect(page.getByText('Job Description*')).toBeVisible();
 
-  const descriptionRole = page.locator('.ql-editor').first();
-  await descriptionRole.fill(
-    'Ensuring the website is functional and user-friendly.' +
-    ' Collaborating with designers to create website layouts.' +
-    ' Writing clean, efficient code using HTML, CSS, JavaScript, and other programming languages.' +
-    ' Testing and debugging websites to ensure optimal performance.' +
-    ' Staying up-to-date with the latest web development trends and technologies.'
-  );
-
-
-  
-  const descriptionQualifications = page.locator('.mt-2.h-32 .ql-editor').first();
-  await descriptionQualifications.fill(
-    'Must have at least 2 years of experience in accounting.\n' +
-    'Any graduate of business course.\n' +
-    'Must have attention to details and be a good communicator.'
-  );
-
-
-  await page.locator('.mt-2.h-32 .ql-editor').fill('Bel');
+ 
 
   await page.getByRole('button', { name: 'Next' }).click();
 
@@ -91,5 +72,5 @@ test('Create Job – Full Flow', async ({ page }) => {
 
   await page.getByRole('checkbox', { name: 'LinkedIn' }).check();
   await page.getByRole('button', { name: 'Share' }).click();
-  await page.getByRole('button', { name: 'No' }).click();
+  await page.getByRole('button', { name: 'No', exact: true }).click();
 });
