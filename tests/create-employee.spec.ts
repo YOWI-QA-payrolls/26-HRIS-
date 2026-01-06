@@ -57,7 +57,7 @@ async function createEmployee(page) {
   await dateButton.waitFor({ state: 'visible' });
   await dateButton.click();
 
-  await page.getByRole('option', { name: /December 19th, 2025/i }).click();
+  await page.getByRole('option', { name: /January 6th, 2026/i }).click();
 
   // ==================== FORM FIELDS ====================
   await page.locator('#firstname').fill(emp.first);
