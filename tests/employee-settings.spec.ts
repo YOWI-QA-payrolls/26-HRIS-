@@ -75,7 +75,7 @@ async function switchTab(page, tabName) {
 }
 
 // ================== MAIN TEST ==================
-test('Employee Settings Completed Automation', async ({ page }) => {
+test('Employee Settings / Completed Automation', async ({ page }) => {
   await loginAndOtp(page);
 
   await page.getByRole('link', { name: 'Settings' }).click();
