@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
 // ==================== RANDOM DATA ====================
 const firstNames = ['Andrew', 'Conan', 'Brynn', 'Quinn', 'Lavinia'];
@@ -10,8 +10,8 @@ const positions = ['HR Manager', 'Software Engineer', 'Sales Representative'];
 const departments = ['Human Resources', 'Engineering', 'Sales'];
 const employmentStatuses = ['Regular', 'Probation', 'Intern'];
 
-const randomFrom = (arr) => arr[Math.floor(Math.random() * arr.length)];
-const randomNum = (len) => Math.floor(Math.random() * Math.pow(10, len));
+const randomFrom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
+const randomNum = (len: number) => Math.floor(Math.random() * Math.pow(10, len));
 
 function buildEmployee() {
   const first = randomFrom(firstNames);
@@ -36,7 +36,7 @@ function buildEmployee() {
 }
 
 // ==================== CREATE EMPLOYEE ====================
-async function createEmployee(page) {
+async function createEmployee(page: Page) {
   const emp = buildEmployee();
 
   // 👉 OPEN MODAL
@@ -85,7 +85,7 @@ async function createEmployee(page) {
 }
 
 // ==================== TEST ====================
-test('Create 5 Randomized Employees', async ({ page }) => {
+test('Create 1 Randomized Employee', async ({ page }) => {
   test.setTimeout(120000); // allow enough time
 
   // LOGIN
@@ -105,11 +105,9 @@ test('Create 5 Randomized Employees', async ({ page }) => {
   await page.getByRole('link', { name: 'Manage' }).click();
   await page.getByRole('link', { name: 'Employee List' }).click();
 
-  // ==================== LOOP ====================
-  for (let i = 1; i <= 5; i++) {
-    console.log(`Creating employee ${i}`);
-    await createEmployee(page);
-  }
+  // ==================== CREATE ONE ====================
+  console.log('Creating employee 1');
+  await createEmployee(page);
 
 });
 

@@ -1,21 +1,6 @@
 import { test, expect } from '@playwright/test';
-import fs from 'fs';
-import path from 'path';
+import type { Page } from '@playwright/test';
 
-// ================== COPY VIDEO AFTER EACH TEST ==================
-test.afterEach(async ({}, testInfo) => {
-  const video = testInfo.attachments.find(a => a.name === 'video');
-  if (!video?.path) return;
-
-  fs.mkdirSync('videos', { recursive: true });
-
-  const target = path.join(
-    'videos',
-    `${testInfo.title.replace(/\s+/g, '_')}.webm`
-  );
-
-  fs.copyFileSync(video.path, target);
-});
 
 // ================== TEST CREDENTIALS ==================
 const EMAIL = 'paulandrewnerona@gmail.com';
@@ -24,7 +9,7 @@ const OTP = '498511';
 // =====================================================
 
 // ---------- LOGIN + OTP ----------
-async function loginAndOtp(page) {
+async function loginAndOtp(page: Page) {
   await page.goto('https://s1.yahshuahris.com/');
 
   await page.getByRole('link', { name: 'Sign In' }).click();
@@ -50,7 +35,7 @@ async function loginAndOtp(page) {
 }
 
 // ---------- CREATE ITEM ----------
-async function createItem(page, name) {
+async function createItem(page: Page, name: string) {
   await page.getByRole('button', { name: 'CREATE' }).click();
 
   const nameField = page.getByRole('textbox', { name: 'Name *' });
@@ -66,7 +51,7 @@ async function createItem(page, name) {
 }
 
 // ---------- SWITCH TAB ----------
-async function switchTab(page, tabName) {
+async function switchTab(page: Page, tabName: string) {
   const tab = page.locator('div.cursor-pointer', { hasText: tabName });
   await tab.first().click();
 
