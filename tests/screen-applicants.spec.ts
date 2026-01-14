@@ -36,7 +36,7 @@ test('test', async ({ page }) => {
 
 test('Checklist', async ({ page }) => {
   // FIRST APPLICANT
-  await page.getByRole('button', { name: 'Recommended Applicants' }).getByTestId('elipsis-btn').click();
+  await page.getByTestId('elipsis-btn').first().click();
   await page.getByRole('button', { name: 'Checklist', exact: true }).click();
   await page.getByRole('checkbox', { name: '1' }).check();
   await page.getByRole('checkbox', { name: '2' }).check();
